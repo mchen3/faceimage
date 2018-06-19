@@ -5,6 +5,9 @@ import ImageLinkForm from './components/imagelinkform/ImageLinkForm';
 import Rank from './components/rank/Rank';
 import './App.css';
 import Particles from 'react-particles-js';
+import Clarifai from 'clarifai';
+import FaceRecognition from './components/facerecognition/FaceRecognition';
+
 
 const particlesOptions = {
   particles: {
@@ -18,9 +21,11 @@ const particlesOptions = {
   }
 }
 
+const app = new Clarifai.App({
+  apiKey: 'c0171a8f6eed4cb1abd49fb2cd58d774'
+ });
+ 
 class App extends Component {
-
-
   constructor() {
     super();
     this.state = {
@@ -33,7 +38,19 @@ class App extends Component {
   }
 
   onButtonSubmit = () => {
-    console.log('click');
+    //console.log('click');
+
+    app.models.predict(Clarifai.COLOR_MODEL, 
+    "https://samples.clarifai.com/face-det.jpg").then(
+      function(response) {
+        // do something with response
+        console.log(response);
+      },
+      function(err) {
+        // there was an error
+      }
+    );
+
   }
 
 
@@ -50,9 +67,7 @@ class App extends Component {
        <ImageLinkForm  onInputChange={this.onInputChange} 
                        onButtonSubmit={this.onButtonSubmit}  />
 
-       {/*<Logo />
-       <ImageLinkForm />
-       <FaceRecognition /> */}
+       <FaceRecognition />
 
       </div>
     );
