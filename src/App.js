@@ -35,36 +35,15 @@ class App extends Component {
   }
 
   onInputChange = (event) => {
-
     this.setState({ input: event.target.value });
-
-   // console.log(event.target.value);
-   // console.log(this.state);    
-
-   // this.setState({value: event.target.value});
-
   }
 
   onButtonSubmit = () => {
-    
-    this.setState ({ imageUrl: this.state.input });
-
-    //this.setState ({ imageUrl: this.state.input });
-    //console.log(this.state.input);
-
-   // console.log(this.state);
-
-    //this.setState = ({ imageUrl: 'ccc.com' });
-
-   //this.setState ({ imageUrl: 'http://patogh-plus.com/wp-content/uploads/2017/01/Essential-Landscape-Photography-Tips.jpg' });
-
-    //console.log(this.state);    
-
-    app.models.predict(Clarifai.COLOR_MODEL, 
-    "https://samples.clarifai.com/face-det.jpg").then(
+    this.setState({imageUrl: this.state.input });
+    app.models.predict(Clarifai.FACE_DETECT_MODEL, 
+    this.state.input).then(
       function(response) {
-        // do something with response
-        //console.log(response);
+        console.log(response.outputs[0].data.regions[0].region_info.bounding_box);
       },
       function(err) {
         // there was an error
@@ -73,20 +52,17 @@ class App extends Component {
 
   }
 
-
   render() {
     return (
       <div className="App">
       <Particles className='particles'
               params={particlesOptions}
       />
-
        <Navigation/>
        <Logo />
        <Rank />
        <ImageLinkForm  onInputChange={this.onInputChange} 
                        onButtonSubmit={this.onButtonSubmit}  />
-
        <FaceRecognition imageUrl={ this.state.imageUrl }/>
 
       </div>
