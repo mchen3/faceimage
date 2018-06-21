@@ -49,8 +49,8 @@ class App extends Component {
     return {
       leftCol: clarifaiFace.left_col * width,
       topRow: clarifaiFace.top_row * height,
-      rightCol:  width - (clarifaiFace.left_col * width),
-      bottomRow: height - (clarifaiFace.top_row * height)
+      rightCol:  width - (clarifaiFace.right_col * width),
+      bottomRow: height - (clarifaiFace.bottom_row * height),
     }
   }
 
@@ -85,7 +85,7 @@ class App extends Component {
        <Rank />
        <ImageLinkForm  onInputChange={this.onInputChange} 
                        onButtonSubmit={this.onButtonSubmit}  />
-       <FaceRecognition imageUrl={ this.state.imageUrl }/>
+       <FaceRecognition box={this.state.box} imageUrl={ this.state.imageUrl }/>
 
       </div>
     );
