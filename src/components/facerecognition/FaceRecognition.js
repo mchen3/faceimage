@@ -8,18 +8,11 @@ const FaceRecognition = ( { imageUrl, box } ) => {
        <img id='inputimage' alt='' src={ imageUrl } width='500px' heigh='auto' />
        <div className='bounding-box'
             style= {{
-
-
-
-        top: box.topRow, 
+               top: box.topRow, 
                right: box.rightCol,
                bottom: box.bottomRow, 
-               left: box.leftCol 
-
-
-            }}
-       
-       
+               left: box.leftCol   
+            }}    
        >
        </div>
       </div>
@@ -30,12 +23,3 @@ const FaceRecognition = ( { imageUrl, box } ) => {
 export default FaceRecognition;
 
 
-// top: box.topRow, 
-//               right: box.rightCol,
-//               bottom: box.bottomRow, 
-//               left: box.leftCol 
-
-// top: 200, 
-// right: 400,
-//  bottom: 428, 
-//  left: 94
