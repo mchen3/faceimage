@@ -97,7 +97,7 @@ class App extends Component {
        .then(response =>  {
           // Update entry count on backend, recieved response, and update state/DOM
           if(response) {
-            fetch('https://rocky-cove-26013.herokuapp.com:3000/image', {
+            fetch('https://rocky-cove-26013.herokuapp.com/image', {
               method: 'put',
               headers: { 'Content-Type': 'application/json'},
               body: JSON.stringify({
